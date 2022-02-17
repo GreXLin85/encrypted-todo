@@ -1,10 +1,11 @@
 import { LoginWrapper, ColFifty, LoginH1, LoginInput, LoginBtn } from "../assets/style/styled";
 import todoLogo from "../assets/img/todoloog.svg"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import isUUID from 'validator/lib/isUUID';
 
 const Login = () => {
     const [roomUUID, setRoomUUID] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,12 +18,11 @@ const Login = () => {
         }
 
         let todos = await fetch(`http://localhost:3001/todopage/${roomUUID}`)
-
         todos = await todos.json();
 
-        console.log(todos);
-
         localStorage.setItem("roomToken", todos.status);
+
+        
     }
 
     return (
@@ -32,10 +32,10 @@ const Login = () => {
                 <LoginH1>Hi 👋 Please enter your todo id</LoginH1>
 
                 <form>
-                    <label>
-                        <LoginInput type="text" onChange={(e) => setRoomUUID(e.target.value)} placeholder="Enter room name" />
-                    </label>
+                    <LoginInput type="text" onChange={(e) => setRoomUUID(e.target.value)} placeholder="Enter todo uuid" />
+                    <LoginInput type="text" onChange={(e) => setPassword(e.target.value)} placeholder="Enter todo password" />
                     <LoginBtn type="submit" onClick={(e) => handleSubmit(e)}>Check</LoginBtn>
+
                 </form>
             </LoginWrapper>
         </ColFifty>
