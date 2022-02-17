@@ -29,6 +29,24 @@ app.get("/todopage/:uuid", async (req, res) => {
         return res.sendStatus(404).json({ status: "not found" });
     }
 });
+// get all todos from todopage
+app.get("/todopage/:uuid/todos", async (req, res) => {
+    const todopage = await models.TodoPage.findOne({
+        where: {
+            uuid: req.params.uuid
+        }
+    });
+    if (todopage) {
+        const todos = await models.TodoPageTodos.findAll({
+            where: {
+                todoPageId: todopage.id
+            }
+        });
+        return res.json(todos);
+    } else {
+        return res.sendStatus(404).json({ status: "not found" });
+    }
+});
 
 io.on("connection", async (socket) => {
 
