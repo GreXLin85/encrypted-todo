@@ -19,6 +19,9 @@ const Todos = () => {
             <TodosWrapper>
                 <ColFull>
                     <TodoH1>Todos</TodoH1>
+                    <TodoPlusBtn>
+                        <img src={deleteIcon} alt="delete"/>
+                    </TodoPlusBtn>
                 </ColFull>
 
                 <ColFull>
@@ -37,8 +40,8 @@ const Todos = () => {
 
                     </TodoList>
 
-                    <TodoPlusBtn>
-                        <img src={plusIcon}/>
+                    <TodoPlusBtn plus={true}>
+                        <img src={plusIcon} alt="plus"/>
                     </TodoPlusBtn>
 
                 </ColFull>
