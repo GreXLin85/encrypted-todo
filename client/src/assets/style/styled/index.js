@@ -310,24 +310,27 @@ export const TodoPlusBtn = styled.button`
   height: 2rem;
   border: none;
   border-radius: 0.5rem;
-  background-color: #d5d5d5;
+  background-color: #eeeeee;
   padding: 0.5rem;
   font-size: 1rem;
   margin-right: 1rem;
   font-family: "Plus Jakarta Sans Bold", sans-serif;
   color: #037AAF;
   position: absolute;
-  bottom: 2rem;
+  ${props => props.plus ? 'bottom: 2rem;' : 'top: 20rem;'}
   right: 2rem;
   opacity: .5;
   transition: all .3s ease-in-out;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:focus {
     outline: none;
   }
-  
-  &:hover{
+
+  &:hover {
     opacity: 1;
   }
 
@@ -341,4 +344,58 @@ export const TodoPlusBtn = styled.button`
     font-size: 1rem;
   }
 
+`
+
+//Modal
+export const TodoAddModal = styled.div`
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+  background: #ffffff;
+  width: 722px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 90;
+  transform: scale(.5);
+  transition: opacity 300ms ease-in-out,
+  visibility 300ms ease-in-out,
+  transform 1000ms ease-in-out;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 300ms cubic-bezier(0.18, 0.89, 0.43, 1.19);
+  }
+  
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
+  
+  @media only screen and (min-width: 600px) {
+    width: 722px;
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    width: 722px;
+  }
+`
+
+export const TodoModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  
+  @media only screen and (max-width: 600px) {
+    padding: 0.5rem 1rem;
+  }
+  
+  @media only screen and (min-width: 600px) {
+    padding: 1rem 2rem;
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    padding: 1rem 2rem;
+  }
 `
