@@ -3,13 +3,23 @@ const { createServer } = require("http");
 const models = require("./models/index");
 const { Server } = require("socket.io");
 const { sign, verify } = require('jsonwebtoken');
-
+const cors = require("cors");
+const validator = require("validator");
 const app = express();
+
+app.use(cors());
+
 const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
 
 // create an express route for checking is todopage exists
 app.get("/todopage/:uuid", async (req, res) => {
+    const { uuid } = req.params;
+
+    if (!validator.isUUID(uuid, 4)) {
+        return res.status(404).json({ status: "Invalid UUID" });
+    }
+
     const todopage = await models.TodoPage.findOne({
         where: {
             uuid: req.params.uuid
@@ -22,11 +32,22 @@ app.get("/todopage/:uuid", async (req, res) => {
             {
                 expiresIn: "24h",
                 algorithm: "HS256"
-            },
+            }
         );
         return res.json({ status: token });
     } else {
-        return res.sendStatus(404).json({ status: "not found" });
+        let newTodoPage = await models.TodoPage.create({
+            uuid: req.params.uuid
+        })
+        const token = sign(
+            { id: newTodoPage.id, uuid: req.params.uuid },
+            "HEY",
+            {
+                expiresIn: "24h",
+                algorithm: "HS256"
+            }
+        );
+        return res.json({ status: token });
     }
 });
 // get all todos from todopage
@@ -44,7 +65,7 @@ app.get("/todopage/:uuid/todos", async (req, res) => {
         });
         return res.json(todos);
     } else {
-        return res.sendStatus(404).json({ status: "not found" });
+        return res.status(404).json({ status: "not found" });
     }
 });
 
@@ -119,4 +140,6 @@ io.on("connection", async (socket) => {
     }
 });
 
-httpServer.listen(3000);
+httpServer.listen(3001, () => {
+    console.log("Server is running on port 3001");
+});
