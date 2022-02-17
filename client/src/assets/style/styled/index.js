@@ -3,40 +3,40 @@ import styled from "styled-components";
 //Utils
 
 export const Container = styled.div`
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 `
 
 export const Row = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 `
 
 export const ColFull = styled.div`
-    width: 100%;
-    max-width: 100%;
+  width: 100%;
+  max-width: 100%;
 `
 
 export const ColFifty = styled.div`
-    width: 100%;
-    max-width: 50%;
-    height: 100vh;
+  width: 100%;
+  max-width: 50%;
+  min-height: 100vh;
 
   @media only screen and (max-width: 600px) {
-      width: 100%;
-      max-width: 100%;
+    width: 100%;
+    max-width: 100%;
   }
 
   @media only screen and (min-width: 600px) {
-      width: 100%;
-      max-width: 100%;
+    width: 100%;
+    max-width: 100%;
   }
 
   @media only screen and (min-width: 1200px) {
-      width: 100%;
-      max-width: 50%;
-      height: 100vh;
+    width: 100%;
+    max-width: 50%;
+    height: 100vh;
   }
 
 `
@@ -57,7 +57,7 @@ export const LoginH1 = styled.h1`
   margin-bottom: 1rem;
   text-align: center;
   font-family: "Plus Jakarta Sans Bold", sans-serif;
-  
+
   @media only screen and (max-width: 600px) {
     font-size: 1rem;
   }
@@ -94,7 +94,7 @@ export const LoginInput = styled.input`
   }
   @media only screen and (min-width: 1200px) {
     font-size: 1rem;
-  }    
+  }
 `
 
 export const LoginBtn = styled.button`
@@ -143,7 +143,7 @@ export const TodoH1 = styled.h1`
   margin-bottom: 1rem;
   text-align: center;
   font-family: "Plus Jakarta Sans Bold", sans-serif;
-  
+
   @media only screen and (max-width: 600px) {
     font-size: 1rem;
   }
@@ -152,7 +152,7 @@ export const TodoH1 = styled.h1`
   }
   @media only screen and (min-width: 1200px) {
     font-size: 2rem;
-  }   
+  }
 `
 
 export const TodoLabel = styled.label`
@@ -163,7 +163,7 @@ export const TodoLabel = styled.label`
   font-family: "Plus Jakarta Sans Bold", sans-serif;
   display: flex;
   align-items: center;
-  
+
   @media only screen and (max-width: 600px) {
     font-size: 0.8rem;
   }
@@ -172,8 +172,8 @@ export const TodoLabel = styled.label`
   }
   @media only screen and (min-width: 1200px) {
     font-size: 1rem;
-  }   
-    
+  }
+
 `
 
 export const TodoCheckbox = styled.input`
@@ -200,8 +200,8 @@ export const TodoCheckbox = styled.input`
   }
   @media only screen and (min-width: 1200px) {
     font-size: 1rem;
-  }    
-    
+  }
+
 `
 
 export const TodoSpan = styled.span`
@@ -210,7 +210,7 @@ export const TodoSpan = styled.span`
   color: #037AAF;
   text-align: center;
   font-family: "Plus Jakarta Sans Bold", sans-serif;
-  
+
   @media only screen and (max-width: 600px) {
     font-size: 0.8rem;
   }
@@ -219,10 +219,9 @@ export const TodoSpan = styled.span`
   }
   @media only screen and (min-width: 1200px) {
     font-size: 1.3rem;
-  }   
-    
-`
+  }
 
+`
 
 export const TodoList = styled.ul`
   width: 100%;
@@ -255,7 +254,7 @@ export const TodoList = styled.ul`
 
 export const TodoLi = styled.li`
 
-  width: 100%;
+  width: 70%;
   height: 2rem;
   border: none;
   border-radius: 0.25rem;
@@ -265,6 +264,9 @@ export const TodoLi = styled.li`
   font-size: 1rem;
   font-family: "Plus Jakarta Sans Bold", sans-serif;
   color: #037AAF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &:focus {
     outline: none;
@@ -279,5 +281,64 @@ export const TodoLi = styled.li`
   @media only screen and (min-width: 1200px) {
     font-size: 1rem;
   }
-    
+
+`
+
+export const TodoFirstItem = styled.div`
+  display: flex;
+  word-break: break-all;
+`
+
+export const TodoSecondItem = styled.div`
+  display: flex;
+`
+
+export const TodoIcons = styled.img`
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all .3s ease-in-out;
+  
+  &:hover{
+    opacity: 1;
+  }
+`
+
+export const TodoPlusBtn = styled.button`
+
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #d5d5d5;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-right: 1rem;
+  font-family: "Plus Jakarta Sans Bold", sans-serif;
+  color: #037AAF;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  opacity: .5;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+  
+  &:hover{
+    opacity: 1;
+  }
+
+  @media only screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
+  @media only screen and (min-width: 600px) {
+    font-size: 1rem;
+  }
+  @media only screen and (min-width: 1200px) {
+    font-size: 1rem;
+  }
+
 `

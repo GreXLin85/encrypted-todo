@@ -1,13 +1,17 @@
 import {
     ColFifty,
     ColFull,
-    TodoCheckbox,
-    TodoH1, TodoLabel,
+    TodoCheckbox, TodoFirstItem,
+    TodoH1, TodoIcons, TodoLabel,
     TodoLi,
-    TodoList,
+    TodoList, TodoPlusBtn, TodoSecondItem,
     TodoSpan,
     TodosWrapper
 } from "../assets/style/styled";
+
+import timesIcon from "../assets/img/times.svg";
+import plusIcon from "../assets/img/plus.svg";
+import deleteIcon from "../assets/img/delete.svg";
 
 const Todos = () => {
     return (
@@ -20,16 +24,23 @@ const Todos = () => {
                 <ColFull>
                     <TodoList>
 
-
                         <TodoLi>
-                            <TodoLabel>
-                                <TodoCheckbox type="checkbox"/>
-                                <TodoSpan>Todo 1</TodoSpan>
-                            </TodoLabel>
+                                <TodoFirstItem>
+                                    <TodoCheckbox type="checkbox"/>
+                                    <TodoSpan>Todo 1</TodoSpan>
+                                </TodoFirstItem>
+
+                                <TodoSecondItem>
+                                    <TodoIcons src={timesIcon}/>
+                                </TodoSecondItem>
                         </TodoLi>
 
-
                     </TodoList>
+
+                    <TodoPlusBtn>
+                        <img src={plusIcon}/>
+                    </TodoPlusBtn>
+
                 </ColFull>
             </TodosWrapper>
         </ColFifty>

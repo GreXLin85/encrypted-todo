@@ -10,8 +10,8 @@ const App = () => {
             <Container>
                 <Row>
                     <Login/>
-                    <TodoLock/>
-                    {/*<Todos/>*/}
+                    {/*<TodoLock/>*/}
+                    <Todos/>
                 </Row>
             </Container>
         </>
