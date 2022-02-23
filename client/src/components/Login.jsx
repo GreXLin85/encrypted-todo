@@ -3,7 +3,7 @@ import todoLogo from "../assets/img/todoloog.svg"
 import { useEffect, useState } from "react";
 import isUUID from 'validator/lib/isUUID';
 
-const Login = () => {
+const Login = (props) => {
     const [roomUUID, setRoomUUID] = useState("");
     const [password, setPassword] = useState("");
 
@@ -17,12 +17,22 @@ const Login = () => {
             return;
         }
 
-        let todos = await fetch(`http://localhost:3001/todopage/${roomUUID}`)
-        todos = await todos.json();
+        try {
+            let todos = await fetch(`http://localhost:3001/todopage/${roomUUID}`)
+            todos = await todos.json();
 
-        localStorage.setItem("roomToken", todos.status);
+            if (todos?.status === "Invalid UUID") {
+                // TODO: show error about invalid UUID
+                console.error("Please enter a valid UUID (must be version 4)");
+                return;
+            }
 
-        
+            
+
+            localStorage.setItem("roomToken", todos.status);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
