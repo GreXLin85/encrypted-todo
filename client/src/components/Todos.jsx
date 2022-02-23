@@ -8,6 +8,7 @@ import {
     TodoSpan,
     TodosWrapper
 } from "../assets/style/styled";
+import AddModal from "./AddModal";
 
 import timesIcon from "../assets/img/times.svg";
 import plusIcon from "../assets/img/plus.svg";
@@ -15,7 +16,8 @@ import deleteIcon from "../assets/img/delete.svg";
 
 const Todos = ({ todos }) => {
     return (
-        <ColFifty>
+        <ColFifty center={true}>
+                    <AddModal/>
             <TodosWrapper>
                 <ColFull>
                     <TodoH1>Todos</TodoH1>

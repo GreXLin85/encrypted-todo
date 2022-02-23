@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-//Utils
 
+//Utils
 export const Container = styled.div`
   width: 100%;
   margin-right: auto;
@@ -23,23 +23,32 @@ export const ColFifty = styled.div`
   max-width: 50%;
   min-height: 100vh;
 
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    max-width: 100%;
-  }
+  ${props => props.center && `
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `}
 
-  @media only screen and (min-width: 600px) {
-    width: 100%;
-    max-width: 100%;
-  }
+}
 
-  @media only screen and (min-width: 1200px) {
-    width: 100%;
-    max-width: 50%;
-    height: 100vh;
-  }
+@media only screen and(max-width: 600px) {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media only screen and (min-width: 1200px) {
+  width: 100%;
+  max-width: 50%;
+  height: 100vh;
+}
 
 `
+
 
 //Login
 export const LoginWrapper = styled.div`
@@ -125,6 +134,7 @@ export const LoginBtn = styled.button`
   }
 
 `
+
 
 //Todos
 export const TodosWrapper = styled.div`
@@ -298,8 +308,8 @@ export const TodoIcons = styled.img`
   cursor: pointer;
   opacity: 0.5;
   transition: all .3s ease-in-out;
-  
-  &:hover{
+
+  &:hover {
     opacity: 1;
   }
 `
@@ -347,55 +357,88 @@ export const TodoPlusBtn = styled.button`
 `
 
 //Modal
-export const TodoAddModal = styled.div`
-  position: absolute;
-  visibility: visible;
-  opacity: 1;
-  background: #ffffff;
-  width: 722px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 90;
-  transform: scale(.5);
-  transition: opacity 300ms ease-in-out,
-  visibility 300ms ease-in-out,
-  transform 1000ms ease-in-out;
 
-  &.active {
-    visibility: visible;
-    opacity: 1;
-    transform: scale(1);
-    transition: transform 300ms cubic-bezier(0.18, 0.89, 0.43, 1.19);
-  }
-  
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-  }
-  
-  @media only screen and (min-width: 600px) {
-    width: 722px;
-  }
-  
-  @media only screen and (min-width: 1200px) {
-    width: 722px;
-  }
+export const ModalContainer = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  width: 700px;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  //transform: scale(.5);
+  transition: opacity 300ms ease-in-out,  visibility 300ms ease-in-out,
+  transform 1000ms ease-in-out;
 `
 
-export const TodoModalHeader = styled.div`
+export const ModalHeader = styled.div`
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  
+  width: 100%;
+  height: 5%;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: "Plus Jakarta Sans Bold", sans-serif;
+  color: #037AAF;
+
+  &:focus {
+    outline: none;
+  }
+
   @media only screen and (max-width: 600px) {
-    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
-  
   @media only screen and (min-width: 600px) {
-    padding: 1rem 2rem;
+    font-size: 1rem;
   }
-  
   @media only screen and (min-width: 1200px) {
-    padding: 1rem 2rem;
+    font-size: 1rem;
   }
+
+`
+
+export const ModalContent = styled.div`
+
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: "Plus Jakarta Sans Bold", sans-serif;
+  color: #037AAF;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media only screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
+  @media only screen and (min-width: 600px) {
+    font-size: 1rem;
+  }
+  @media only screen and (min-width: 1200px) {
+    font-size: 1rem;
+  }
+
+`
+
+export const ModalInput = styled.input`
+
+  width: 100%;
+  height: 46px;
+  border-radius: 6px;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  background-color: #F5F5F5;
+  
 `
