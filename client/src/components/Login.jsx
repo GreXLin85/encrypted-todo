@@ -1,19 +1,51 @@
-import {LoginWrapper, ColFifty, LoginH1, LoginInput, LoginBtn} from "../assets/style/styled";
+import { LoginWrapper, ColFifty, LoginH1, LoginInput, LoginBtn } from "../assets/style/styled";
 import todoLogo from "../assets/img/todoloog.svg"
+import { useEffect, useState } from "react";
+import isUUID from 'validator/lib/isUUID';
 
+const Login = (props) => {
+    const [roomUUID, setRoomUUID] = useState("");
+    const [password, setPassword] = useState("");
 
-const Login = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // check if UUID is valid
+        if (roomUUID.length === 0 || !isUUID(roomUUID, 4)) {
+            // TODO: show error about invalid UUID
+            console.error("Please enter a valid UUID (must be version 4)");
+            return;
+        }
+
+        try {
+            let todos = await fetch(`http://localhost:3001/todopage/${roomUUID}`)
+            todos = await todos.json();
+
+            if (todos?.status === "Invalid UUID") {
+                // TODO: show error about invalid UUID
+                console.error("Please enter a valid UUID (must be version 4)");
+                return;
+            }
+
+            
+
+            localStorage.setItem("roomToken", todos.status);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <ColFifty>
             <LoginWrapper>
-                <img src={todoLogo} alt="todo logo"/>
-                <LoginH1>Hi 👋 Please login or register</LoginH1>
+                <img src={todoLogo} alt="todo logo" />
+                <LoginH1>Hi 👋 Please enter your todo id</LoginH1>
 
                 <form>
-                    <label>
-                        <LoginInput type="text" placeholder="Enter room name"/>
-                    </label>
-                    <LoginBtn type="submit">Check</LoginBtn>
+                    <LoginInput type="text" onChange={(e) => setRoomUUID(e.target.value)} placeholder="Enter todo uuid" />
+                    <LoginInput type="text" onChange={(e) => setPassword(e.target.value)} placeholder="Enter todo password" />
+                    <LoginBtn type="submit" onClick={(e) => handleSubmit(e)}>Check</LoginBtn>
+
                 </form>
             </LoginWrapper>
         </ColFifty>
