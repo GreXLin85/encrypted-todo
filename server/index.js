@@ -23,7 +23,8 @@ app.get("/todopage/:uuid", async (req, res) => {
     const todopage = await models.TodoPage.findOne({
         where: {
             uuid: req.params.uuid
-        }
+        },
+        include: ["todos"]
     });
     if (todopage) {
         const token = sign(
@@ -34,7 +35,7 @@ app.get("/todopage/:uuid", async (req, res) => {
                 algorithm: "HS256"
             }
         );
-        return res.json({ status: token });
+        return res.json({ status: token, todos : todopage.todos });
     } else {
         let newTodoPage = await models.TodoPage.create({
             uuid: req.params.uuid
@@ -47,7 +48,7 @@ app.get("/todopage/:uuid", async (req, res) => {
                 algorithm: "HS256"
             }
         );
-        return res.json({ status: token });
+        return res.json({ status: token, todos: [] });
     }
 });
 // get all todos from todopage

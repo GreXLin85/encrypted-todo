@@ -13,7 +13,7 @@ import timesIcon from "../assets/img/times.svg";
 import plusIcon from "../assets/img/plus.svg";
 import deleteIcon from "../assets/img/delete.svg";
 
-const Todos = () => {
+const Todos = ({ todos }) => {
     return (
         <ColFifty>
             <TodosWrapper>
@@ -24,21 +24,25 @@ const Todos = () => {
                 <ColFull>
                     <TodoList>
 
-                        <TodoLi>
-                                <TodoFirstItem>
-                                    <TodoCheckbox type="checkbox"/>
-                                    <TodoSpan>Todo 1</TodoSpan>
-                                </TodoFirstItem>
+                        {todos === [] || todos === null ? todos.map((todo, index) => {
+                            return (
+                                <TodoLi key={index}>
+                                    <TodoFirstItem>
+                                        <TodoCheckbox type="checkbox" selected={todo.isFinished} />
+                                        <TodoSpan>{todo.content}</TodoSpan>
+                                    </TodoFirstItem>
 
-                                <TodoSecondItem>
-                                    <TodoIcons src={timesIcon}/>
-                                </TodoSecondItem>
-                        </TodoLi>
+                                    <TodoSecondItem>
+                                        <TodoIcons src={timesIcon} />
+                                    </TodoSecondItem>
+                                </TodoLi>
+                            )
+                        }) : <p>No Todos</p>}
 
                     </TodoList>
 
                     <TodoPlusBtn>
-                        <img src={plusIcon}/>
+                        <img src={plusIcon} />
                     </TodoPlusBtn>
 
                 </ColFull>
