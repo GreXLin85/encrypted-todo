@@ -12,8 +12,9 @@ import {
 import timesIcon from "../assets/img/times.svg";
 import plusIcon from "../assets/img/plus.svg";
 import deleteIcon from "../assets/img/delete.svg";
+import CryptoJS from "crypto-js";
 
-const Todos = ({ todos }) => {
+const Todos = ({ todos, password }) => {
     return (
         <ColFifty>
             <TodosWrapper>
@@ -29,7 +30,7 @@ const Todos = ({ todos }) => {
                                 <TodoLi key={index}>
                                     <TodoFirstItem>
                                         <TodoCheckbox type="checkbox" selected={todo.isFinished} />
-                                        <TodoSpan>{todo.content}</TodoSpan>
+                                        <TodoSpan>{CryptoJS.AES.decrypt(todo.content)}</TodoSpan>
                                     </TodoFirstItem>
 
                                     <TodoSecondItem>

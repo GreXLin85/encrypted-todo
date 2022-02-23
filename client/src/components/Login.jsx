@@ -27,9 +27,10 @@ const Login = (props) => {
                 return;
             }
 
-            
+            props.todosChange(todos.todos);
+            props.passwordChange(password);
 
-            localStorage.setItem("roomToken", todos.status);
+
         } catch (error) {
             console.error(error);
         }
